@@ -101,7 +101,6 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function(){
 
 
 
-
 /*Route::group(array(['namespace' => 'Api'], 'prefix'=>'api'),function(){
 	//列表页
 	Route::any('/list/{post}', "\App\Http\Controllers\Api\ListController@index");
