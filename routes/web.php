@@ -46,8 +46,8 @@ Route::middleware(['auth', 'super'])->prefix('z')->group(function () {
 	Route::get('/settings', 'SettingController@index_api');
 	Route::post('/settings', 'SettingControllerLogin@store_api');
 
-	Route::get('/users/{id}', 'UserController@show_api');
-	Route::post('/users/{id}', 'UserController@update_api');
+	Route::get('/users/{id}', 'MemberController@show_api');
+	Route::post('/users/{id}', 'MemberController@update_api');
 });
 
 
@@ -77,7 +77,6 @@ Route::middleware(['auth', 'super'])->prefix('z')->group(function () {
 
 });*/
 
-
 /*
 |--------------------------------------------------------------------------
 | API
@@ -87,8 +86,11 @@ Route::middleware(['auth', 'super'])->prefix('z')->group(function () {
 |
 */
 Route::group(['namespace' => 'Api', 'prefix' => 'api'], function(){
+
+	Route::get('list/detail', "ListController@index");
+
 	// 绑定手机号
-	Route::get('/api/bindaccount', '\App\Http\Controllers\Api\UserController@bindaccount');
+	Route::get('member/bindaccount', 'MemberController@bindaccount');
 
 	// 修改密码 params
 	Route::get('/api/resetpwd', '\App\Http\Controllers\Api\c@resetpwd');

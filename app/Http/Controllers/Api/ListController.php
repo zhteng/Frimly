@@ -24,4 +24,5 @@ class ListController extends Controller
 	function detail(){
 		var_dump(1);
 	}
+
 }

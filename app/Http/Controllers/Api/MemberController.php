@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Api\Member;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+
+class MemberController extends Controller
 {
     //
 	public function __construct()
@@ -20,7 +25,10 @@ class UserController extends Controller
 	 */
 	public function bindaccount(){
 
-
+		$member = new Member();
+		$one = $member->oneM();
+		//var_dump(json_decode($one, true));die;
+		return $one;
 	}
 
 	/**
