@@ -16,8 +16,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-	protected $apiNamespace;
-
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -26,7 +24,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-		$this->apiNamespace = 'App\Http\Controllers\Api';
 
         parent::boot();
     }
