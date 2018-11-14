@@ -18,22 +18,39 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-//Route::get('member/get', '\App\Http\Controllers\Api\MemberController@get');
+Route::prefix('v1')->namespace('Api\V1')->group(function () {
+	Route::middleware(['auth:api', 'verified'])->group(function () {
+		// Comments
+		Route::apiResource('comments', 'CommentController')->only('destroy');
+		Route::apiResource('posts.comments', 'PostCommentController')->only('store');
 
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function() {
+		// Posts
+		Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
+		Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
+		Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
 
-	Route::get('member/get', '\App\Http\Controllers\Api\MemberController@get');
-	Route::get('list/detail', "ListController@index");
+		// Users
+		Route::apiResource('users', 'UserController')->only('update');
 
-	// 绑定手机号
-	Route::get('member/bindaccount', 'MemberController@bindaccount');
+		// Media
+		Route::apiResource('media', 'MediaController')->only(['store', 'destroy']);
+	});
 
-	// 修改密码 params
-	Route::get('/api/resetpwd', '\App\Http\Controllers\Api\c@resetpwd');
+	Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
 
-	// 注册 params {mobile, code, pwd, pwd}
-	Route::get('/api/register', '\App\Http\Controllers\Api\UserController@register');
+	// Comments
+	Route::apiResource('posts.comments', 'PostCommentController')->only('index');
+	Route::apiResource('users.comments', 'UserCommentController')->only('index');
+	Route::apiResource('comments', 'CommentController')->only(['index', 'show']);
 
+	// Posts
+	Route::apiResource('posts', 'PostController')->only(['index', 'show']);
+	Route::apiResource('users.posts', 'UserPostController')->only('index');
 
+	// Users
+	Route::apiResource('users', 'UserController')->only(['index', 'show']);
+
+	// Media
+	Route::apiResource('media', 'MediaController')->only('index');
 });
 
