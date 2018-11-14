@@ -51,25 +51,6 @@ Route::middleware(['auth', 'super'])->prefix('z')->group(function () {
 });
 
 
-/*前台路由*/
-/*Route::group(array(['namespace' => 'Home'],'prefix'=>'home'),function(){
-	//列表页
-	Route::any('/list/{post}', "\App\Http\Controllers\Api\ListController@index");
-
-	//详情页
-	Route::any('/detail/{post}', "\App\Http\Controllers\Home\DetailController@index");
-
-	//留言板
-	//显示界面
-	Route::any('/message', "\App\Http\Controllers\Home\MessageController@index");
-
-	//提交逻辑
-	Route::any('/message/submit', "\App\Http\Controllers\Home\MessageController@submit");
-
-	//搜索
-	Route::any('/search', "\App\Http\Controllers\Home\SearchController@index");
-
-});*/
 
 /*Route::namespace('Api')->group(function ($post){
 
@@ -79,31 +60,15 @@ Route::middleware(['auth', 'super'])->prefix('z')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| API
+| Home 前台
 |--------------------------------------------------------------------------
 |
-| Api Controller 在 App\Http\Controller\Api 这个命名空间下。
+| Api Controller 在 App\Http\Controller\Home 这个命名空间下。
 |
 */
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function(){
+Route::group(['namespace' => 'Home', 'prefix' => 'home'], function(){
+	//Route::get('member/get', 'MemberController@get');
 
-	Route::get('list/detail', "ListController@index");
-
-	// 绑定手机号
-	Route::get('member/bindaccount', 'MemberController@bindaccount');
-
-	// 修改密码 params
-	Route::get('/api/resetpwd', '\App\Http\Controllers\Api\c@resetpwd');
-
-	// 注册 params {mobile, code, pwd, pwd}
-	Route::get('/api/register', '\App\Http\Controllers\Api\UserController@register');
-
-
-});
-
-
-
-/*Route::group(array(['namespace' => 'Api'], 'prefix'=>'api'),function(){
 	//列表页
 	Route::any('/list/{post}', "\App\Http\Controllers\Api\ListController@index");
 
@@ -120,7 +85,8 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function(){
 	//搜索
 	Route::any('/search', "\App\Http\Controllers\Home\SearchController@index");
 
-});*/
+
+});
 
 
 Route::get('name/{name}/age/{age}', function($name, $age){
