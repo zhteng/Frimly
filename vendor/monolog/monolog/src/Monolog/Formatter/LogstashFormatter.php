@@ -22,7 +22,7 @@ namespace Monolog\Formatter;
 class LogstashFormatter extends NormalizerFormatter
 {
     const V0 = 0;
-    const v1 = 1;
+    const V1 = 1;
 
     /**
      * @var string the name of the system for the Logstash log message, used to fill the @source field
@@ -75,8 +75,8 @@ class LogstashFormatter extends NormalizerFormatter
     {
         $record = parent::format($record);
 
-        if ($this->version === self::v1) {
-            $message = $this->formatv1($record);
+        if ($this->version === self::V1) {
+            $message = $this->formatV1($record);
         } else {
             $message = $this->formatV0($record);
         }
@@ -127,7 +127,7 @@ class LogstashFormatter extends NormalizerFormatter
         return $message;
     }
 
-    protected function formatv1(array $record)
+    protected function formatV1(array $record)
     {
         if (empty($record['datetime'])) {
             $record['datetime'] = gmdate('c');
