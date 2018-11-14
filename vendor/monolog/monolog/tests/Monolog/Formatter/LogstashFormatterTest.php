@@ -165,9 +165,9 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\LogstashFormatter::format
      */
-    public function testDefaultFormatterV1()
+    public function testDefaultFormatterv1()
     {
-        $formatter = new LogstashFormatter('test', 'hostname', null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', 'hostname', null, 'ctxt_', LogstashFormatter::v1);
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',
@@ -188,7 +188,7 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $message['type']);
         $this->assertEquals('hostname', $message['host']);
 
-        $formatter = new LogstashFormatter('mysystem', null, null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('mysystem', null, null, 'ctxt_', LogstashFormatter::v1);
 
         $message = json_decode($formatter->format($record), true);
 
@@ -198,9 +198,9 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\LogstashFormatter::format
      */
-    public function testFormatWithFileAndLineV1()
+    public function testFormatWithFileAndLinev1()
     {
-        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::v1);
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',
@@ -220,9 +220,9 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\LogstashFormatter::format
      */
-    public function testFormatWithContextV1()
+    public function testFormatWithContextv1()
     {
-        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::v1);
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',
@@ -239,7 +239,7 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('logger', $message['ctxt_from']);
 
         // Test with extraPrefix
-        $formatter = new LogstashFormatter('test', null, null, 'CTX', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', null, null, 'CTX', LogstashFormatter::v1);
         $message = json_decode($formatter->format($record), true);
 
         $this->assertArrayHasKey('CTXfrom', $message);
@@ -249,9 +249,9 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\LogstashFormatter::format
      */
-    public function testFormatWithExtraV1()
+    public function testFormatWithExtrav1()
     {
-        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', null, null, 'ctxt_', LogstashFormatter::v1);
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',
@@ -268,16 +268,16 @@ class LogstashFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('pair', $message['key']);
 
         // Test with extraPrefix
-        $formatter = new LogstashFormatter('test', null, 'EXT', 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('test', null, 'EXT', 'ctxt_', LogstashFormatter::v1);
         $message = json_decode($formatter->format($record), true);
 
         $this->assertArrayHasKey('EXTkey', $message);
         $this->assertEquals('pair', $message['EXTkey']);
     }
 
-    public function testFormatWithApplicationNameV1()
+    public function testFormatWithApplicationNamev1()
     {
-        $formatter = new LogstashFormatter('app', 'test', null, 'ctxt_', LogstashFormatter::V1);
+        $formatter = new LogstashFormatter('app', 'test', null, 'ctxt_', LogstashFormatter::v1);
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',

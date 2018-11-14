@@ -92,7 +92,7 @@ class HipChatHandlerTest extends TestCase
         $this->assertRegexp('/notify=0&message=test1&message_format=text&color=red&room_id=room1&from=Monolog$/', $content);
     }
 
-    public function testWriteContentV1WithoutName()
+    public function testWriteContentv1WithoutName()
     {
         $this->createHandler('myToken', 'room1', null, false, 'hipchat.foo.bar', 'v1');
         $this->handler->handle($this->getRecord(Logger::CRITICAL, 'test1'));
