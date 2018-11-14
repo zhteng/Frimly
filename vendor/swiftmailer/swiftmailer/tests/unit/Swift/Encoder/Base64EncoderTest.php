@@ -107,7 +107,7 @@ class Swift_Encoder_Base64EncoderTest extends \PHPUnit\Framework\TestCase
 
         $output =
         'YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXpBQk'.//38
-        'NERUZHSElKS0xNTk9QUVJTVFVWv1hZWjEyMzQ1'."\r\n".//76 *
+        'NERUZHSElKS0xNTk9QUVJTVFVWV1hZWjEyMzQ1'."\r\n".//76 *
         'Njc4OTBhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3'.//38
         'h5ekFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFla'."\r\n".//76 *
         'MTIzNDU2Nzg5MEFCQ0RFRkdISUpLTE1OT1BRUl'.//38
@@ -133,7 +133,7 @@ class Swift_Encoder_Base64EncoderTest extends \PHPUnit\Framework\TestCase
         $output =
         'YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXpBQk'.//38
         'NERUZHSElKS0'."\r\n".//50 *
-        'xNTk9QUVJTVFVWv1hZWjEyMzQ1Njc4OTBhYmNk'.//38
+        'xNTk9QUVJTVFVWV1hZWjEyMzQ1Njc4OTBhYmNk'.//38
         'ZWZnaGlqa2xt'."\r\n".//50 *
         'bm9wcXJzdHV2d3h5ekFCQ0RFRkdISUpLTE1OT1'.//38
         'BRUlNUVVZXWF'."\r\n".//50 *
@@ -160,7 +160,7 @@ class Swift_Encoder_Base64EncoderTest extends \PHPUnit\Framework\TestCase
         $output =
         'YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXpBQk'.//38
         'NERUZHSElKS0xNTk9QU'."\r\n".//57 *
-        'VJTVFVWv1hZWjEyMzQ1Njc4OTBhYmNkZWZnaGl'.//38
+        'VJTVFVWV1hZWjEyMzQ1Njc4OTBhYmNkZWZnaGl'.//38
         'qa2xtbm9wcXJzdHV2d3h5ekFCQ0RFRkdISUpLT'."\r\n".//76 *
         'E1OT1BRUlNUVVZXWFlaMTIzNDU2Nzg5MEFCQ0R'.//38
         'FRkdISUpLTE1OT1BRUlNUVVZXWFla';                    //67
