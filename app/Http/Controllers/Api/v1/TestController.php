@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class PostController extends Controller
+class TestController extends Controller
 {
     /**
      * Return the posts.
@@ -63,4 +63,5 @@ class PostController extends Controller
 
         return response()->noContent();
     }
+
 }

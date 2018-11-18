@@ -18,14 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::prefix('v1')->namespace('Api\V1')->group(function () {
+Route::prefix('v1')->namespace('Api\v1')->group(function () {
 	Route::middleware(['auth:api', 'verified'])->group(function () {
 		// Comments
 		Route::apiResource('comments', 'CommentController')->only('destroy');
 		Route::apiResource('posts.comments', 'PostCommentController')->only('store');
 
 		// Posts
-		Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
+		Route::apiResource('posts', 'TestController')->only(['update', 'store', 'destroy']);
 		Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
 		Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
 
@@ -44,7 +44,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 	Route::apiResource('comments', 'CommentController')->only(['index', 'show']);
 
 	// Posts
-	Route::apiResource('posts', 'PostController')->only(['index', 'show']);
+	Route::apiResource('posts', 'TestController')->only(['index', 'show']);
 	Route::apiResource('users.posts', 'UserPostController')->only('index');
 
 	// Users
@@ -52,5 +52,15 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
 	// Media
 	Route::apiResource('media', 'MediaController')->only('index');
+
+    //Route::get('member/get', 'MemberController@get');
+
+    Route::apiResource('photos', 'PhotosController')->only(['index', 'show']);
+
+    Route::apiResource('member', 'MemberController')->only(['index', 'show']);
+    Route::apiResource('member', 'MemberController')->only(['store', 'destroy']);
+    //Route::apiResource('member/{id}', 'MemberController')->only(['destroy']);
+
+
 });
 

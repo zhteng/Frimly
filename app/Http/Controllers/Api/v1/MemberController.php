@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Post;
 use App\Models\Api\Member as Member;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\Member as MemberResource;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +19,31 @@ class MemberController extends Controller
 
 	}
 
-	public function get(Request $request){
+	public function index(){
+
+    }
+
+    public function show(Member $member): MemberResource
+    {
+        return new MemberResource($member);
+    }
+
+
+    public function store(Request $request):MemberResource
+    {
+        return new MemberResource(Member::create($request->all()));
+    }
+
+    public function destroy(Member $member){
+
+        $member->delete();
+
+        return response()->noContent();
+    }
+
+
+    public function get(Request $request){
+	    //var_dump($request);die;
 		if ($request->isMethod('get')){
 			$uid = Input::get('uid');
 			if (empty($uid)){
@@ -78,16 +102,6 @@ class MemberController extends Controller
 	 */
 	public function register(){
 
-
-	}
-
-
-	/**
-	 * 我的积分
-	 * @param  int uid
-	 * @return void
-	 */
-	public function mypoint(){
 
 	}
 
