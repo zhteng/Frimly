@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Member as MemberResource;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Resources\Post as PostResource;
 
 
 class MemberController extends Controller
@@ -34,32 +35,28 @@ class MemberController extends Controller
         return new MemberResource(Member::create($request->all()));
     }
 
-    public function destroy(Member $member){
+	public function destroy(Post $post): Response
+	{
+		$this->authorize('delete', $post);
 
-        $member->delete();
+		$post->delete();
 
-        return response()->noContent();
-    }
+		return response()->noContent();
+	}
 
-
-    public function get(Request $request){
-	    //var_dump($request);die;
-		if ($request->isMethod('get')){
-			$uid = Input::get('uid');
-			if (empty($uid)){
-
-			}
-			$flights = Member::where('uid', 2)
-				->orderBy('uid', 'desc')
-				->take(10)
-				->get();
-
-			return response()->json(['ret'=>1,'msg'=>'success','data'=>$flights]);
-
-		}
+	public function delete(Request $request, $id)
+	{
+		$member = Member::findOrFail($id);
+		$member->delete();
+		return 204;
+	}
 
 
-		//return $flights;
+	public function update(Request $request): MemberResource
+	{
+		$member = Member::findOrFail($request['uid']);
+		$member->update($request->all());
+		return new MemberResource($member);
 	}
 
 

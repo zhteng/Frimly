@@ -39,7 +39,7 @@ class Post extends Model
      */
     protected static function boot(): void
     {
-        //parent::boot();
+        parent::boot();
         //static::addGlobalScope(new PostedScope);
     }
 
@@ -113,7 +113,7 @@ class Post extends Model
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        //return $this->hasMany(Comment::class);
     }
 
     /**

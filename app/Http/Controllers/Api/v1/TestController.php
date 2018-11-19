@@ -47,9 +47,9 @@ class TestController extends Controller
     /**
      * Return the specified resource.
      */
-    public function show(Post $post): PostResource
+    public function show(Post $post): object
     {
-        return new PostResource($post);
+		return new PostResource($post);
     }
 
     /**

@@ -32,12 +32,14 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 		// Users
 		Route::apiResource('users', 'UserController')->only('update');
 
+		Route::apiResource('member', 'MemberController')->only('update'); // PUT
+
 		// Media
-		Route::apiResource('media', 'MediaController')->only(['store', 'destroy']);
+		Route::apiResource('media', 'MediaContrstoreoller')->only(['store', 'destroy']);
 	});
 
 	Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
-
+	Route::apiResource('posts.comments', 'PostCommentController')->only('store');
 	// Comments
 	Route::apiResource('posts.comments', 'PostCommentController')->only('index');
 	Route::apiResource('users.comments', 'UserCommentController')->only('index');
@@ -53,13 +55,15 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 	// Media
 	Route::apiResource('media', 'MediaController')->only('index');
 
-    //Route::get('member/get', 'MemberController@get');
-
     Route::apiResource('photos', 'PhotosController')->only(['index', 'show']);
 
     Route::apiResource('member', 'MemberController')->only(['index', 'show']);
     Route::apiResource('member', 'MemberController')->only(['store', 'destroy']);
     //Route::apiResource('member/{id}', 'MemberController')->only(['destroy']);
+	Route::get('/member/delete/{id}', 'MemberController@delete')->name('member.delete');
+	//Route::post('/member/update', 'MemberController@update')->name('member.update');
+
+	//Route::apiResource('member', 'MemberController')->only('update'); // PUT
 
 
 });

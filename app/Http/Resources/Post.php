@@ -11,6 +11,8 @@ class Post extends Resource
      */
     public function toArray($request): array
     {
+    	var_dump($request);die;
+
         return [
             'id' => $this->id,
             'title' => $this->title,
