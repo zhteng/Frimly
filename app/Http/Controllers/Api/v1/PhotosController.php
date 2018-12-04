@@ -14,7 +14,7 @@ class PhotosController extends Controller
 
     public function index(Request $request)
     {
-
+        return $request;
     }
 
     /*public function show(Photo $photos):PhotosResource

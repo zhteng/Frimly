@@ -18,7 +18,33 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+//firmly.zhteng.cn/api/v1/photos?token=1
+
+
+
+
+
 Route::prefix('v1')->namespace('Api\v1')->group(function () {
+    Route::get('/photos', 'PhotosController@index')->name('photos');
+
+    Route::get('/', function () {
+        //
+    })->middleware('token');
+
+    Route::middleware(['auth', 'token'])->group(function () {
+
+
+    });
+
+
+
+
+    //Route::get('/photos', 'PhotosController@index')->name('photos');
+    Route::middleware(['auth', 'token'])->group(function () {
+
+        //Route::get('/photos', 'PhotosController@index')->name('photos');
+    });
+
 	Route::middleware(['auth:api', 'verified'])->group(function () {
 		// Comments
 		Route::apiResource('comments', 'CommentController')->only('destroy');
@@ -55,7 +81,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 	// Media
 	Route::apiResource('media', 'MediaController')->only('index');
 
-    Route::apiResource('photos', 'PhotosController')->only(['index', 'show']);
+    //Route::apiResource('photos', 'PhotosController')->only(['index', 'show']);
 
     Route::apiResource('member', 'MemberController')->only(['index', 'show']);
     Route::apiResource('member', 'MemberController')->only(['store', 'destroy']);
