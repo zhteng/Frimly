@@ -139,7 +139,7 @@ class ArticleController extends Controller
     }
     $article->title = $request->title;
     $article->cover = $request->cover;
-    $article->content = $request->content;
+    $article->content = $request->contents;
     $article->save();
     //处理标签
     //先删除文章关联的所有标签
@@ -225,7 +225,7 @@ class ArticleController extends Controller
   public function markdown_api(Request $request)
   {
     $converter = new HtmlConverter();
-    return $converter->convert($request->content);
+    return $converter->convert($request->contents);
   }
 }
 
