@@ -10,14 +10,17 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Redis;
 
 class CheckToken
 {
 	public function handle($request, Closure $next)
 	{
-		if ($request->input('token') != '12580')
+		$token = Redis::get('token');
+		if (empty($token) || $token != $request->input('token'))
 		{
-			return redirect()->to('');
+
+			//return redirect()->to('/home/404');
 		}
 		return $next($request);
 	}

@@ -9,10 +9,22 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
-    /**
+
+	private $_key = '';
+
+	public function __construct(Request $request)
+	{
+		if (!empty($request->input('uid'))){
+			$this->_key = 'udata.' . $request->input('uid');
+		}
+	}
+
+
+	/**
      * Return the users.
      */
     public function index(Request $request): ResourceCollection
@@ -25,9 +37,14 @@ class UserController extends Controller
     /**
      * Return the specified resource.
      */
-    public function show(User $user): UserResource
+    public function show(Request $request)
     {
-        return new UserResource($user);
+		if ($this->_key != '')
+		{
+			return $data = Redis::get($this->_key);
+		}else{
+			return User::find($request->input('uid'));
+		}
     }
 
     /**
@@ -47,4 +64,28 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
+
+	/**
+	 * return login token resource
+	 * @param Request $request
+	 */
+    public function login(Request $request)
+	{
+		$uid = $request->input('uid');
+		$password = $request->input('password');
+		if (!empty($uid) && !empty($password)){
+			if ($this->_key != ''){
+				if (!empty(Redis::get($this->_key))){
+					return Redis::get($this->_key);
+				}
+				$user = User::find($request->input('uid'));
+				if (!empty($user)){
+					Redis::set($this->_key, $user);
+					return $user;
+				}
+			}
+		}
+		return response()->json(['message' => 'This user information is error.'], 401);
+	}
+
 }
