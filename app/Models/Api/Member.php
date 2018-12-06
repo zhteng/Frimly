@@ -3,20 +3,7 @@
 namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Model;
-
-/*class Member extends Model
-{
-	protected $connection = 'apimysql';
-	protected $table = 'member';
-	public function oneM()
-	{
-
-
-		$result = parent::storeData($data, $flash);
-		return $this->all();
-	}
-}*/
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Member extends Model{
 
@@ -47,6 +34,9 @@ class Member extends Model{
         parent::boot();
     }
 
+    public function ucenter(){
+    	//return $this->hasMany('App\Models\Api\Ucentermember', 'id');
+	}
 
 
     public function destroyData($data, $flsh=true){

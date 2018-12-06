@@ -23,7 +23,7 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostsRequest $request, Post $post): PostResource
+    public function update(PostsRequest $request, Post $post) PostResource
     {
         $this->authorize('update', $post);
 

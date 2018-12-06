@@ -4,30 +4,94 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post;
-use App\Models\Api\Member as Member;
+use App\Models\Api\Member;
 use Illuminate\Http\Request;
-use App\Http\Resources\Member as MemberResource;
+//use App\Http\Resources\Member as MemberResource;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use App\Http\Resources\Post as PostResource;
-
+use Illuminate\Support\Facades\Redis;
 
 class MemberController extends Controller
 {
-    //
-	public function __construct()
-	{
+	private $_key = 'member.udata.';
 
+	public function __construct(Request $request)
+	{
+		if (!empty($request->input('uid'))){
+			$this->_key = $this->_key . $request->input('uid');
+		}
 	}
 
-	public function index(){
 
-    }
+	/**
+	 * Return the member.
+	 */
+	public function index(Request $request): ResourceCollection
+	{
+		return UserResource::collection(
+			Member::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
+		);
+	}
 
-    public function show(Member $member): MemberResource
-    {
-        return new MemberResource($member);
-    }
+	/**
+	 * Return the specified resource.
+	 */
+	public function show(Request $request)
+	{
+		if ($this->_key != '')
+		{
+			return $data = Redis::get($this->_key);
+		}else{
+			return Member::find($request->input('uid'));
+		}
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UsersRequest $request, User $user): UserResource
+	{
+		$this->authorize('update', $user);
+
+		if ($request->filled('password')) {
+			$request->merge([
+				'password' => Hash::make($request->input('password'))
+			]);
+		}
+
+		$user->update(array_filter($request->only(['name', 'email', 'password'])));
+
+		return new UserResource($user);
+	}
+
+	/**
+	 * return login token resource
+	 * @params Request $request
+	 * http://firmly.zhteng.cn/api/v1/login?username=哈哈&password=123456
+	 */
+	public function login(Request $request, Member $member)
+	{
+
+		$da = $member->ucenter();
+		var_dump($da);die;
+
+		$uid = $request->input('username');
+		$password = $request->input('password');
+		if (!empty($uid) && !empty($password)){
+			if ($this->_key != ''){
+				if (!empty(Redis::get($this->_key))){
+					return response()->json(['code' => 200,'message' => 'success','data' => Redis::get($this->_key)]);
+				}
+				$member = Member::find($request->input('uid'));
+				if (!empty($member)){
+					Redis::setex($this->_key, 300, $member);
+					//Redis::set($this->_key, $member);
+					return response()->json(['code' => 200,'message' => 'success','data' => $member]);
+				}
+			}
+		}
+		return response()->json(['message' => 'This user information is error.'], 401);
+	}
 
 
     public function store(Request $request):MemberResource
@@ -52,12 +116,12 @@ class MemberController extends Controller
 	}
 
 
-	public function update(Request $request): MemberResource
+	/*public function update(Request $request): MemberResource
 	{
 		$member = Member::findOrFail($request['uid']);
 		$member->update($request->all());
 		return new MemberResource($member);
-	}
+	}*/
 
 
 	/**

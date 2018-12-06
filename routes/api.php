@@ -29,7 +29,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 
     });
 
-	Route::get('/login', 'UserController@login')->name('user.login');
+	Route::get('/login', 'MemberController@login')->name('member.login');
 
 
 

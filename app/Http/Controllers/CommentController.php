@@ -21,7 +21,7 @@ class CommentController extends Controller
     $comment->user_id = Auth::id() ? Auth::id() : 0;
     $comment->parent_id = $request->parent_id ? $request->parent_id : 0;
     $comment->article_id = $request->article_id;
-    $comment->content = $request->content;
+    //$comment->content = $request->content;
     $comment->name = $request->name;
     $comment->email = $request->email;
     $comment->website = $request->website;
