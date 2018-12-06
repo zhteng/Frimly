@@ -34,8 +34,9 @@ class Member extends Model{
         parent::boot();
     }
 
-    public function ucenter(){
-    	//return $this->hasMany('App\Models\Api\Ucentermember', 'id');
+    public function ucenter(): HasMany
+    {
+    	//return $this->hasMany(Ucentermember::class, 'id');
 	}
 
 
