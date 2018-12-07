@@ -72,7 +72,16 @@ class MemberController extends Controller
 	public function login(Request $request, Member $member)
 	{
 
-		$da = $member->ucenter();
+		$data = Member::where('uid', 1)
+			//->select('member.*', 'ucenter_member.*')
+			->leftJoin('ucenter_member', 'member.uid', '=', 'ucenter_member.id')
+			//->with(['labels'])
+			->get(array('uid', 'member.reg_time as aaa'))->toArray();
+
+var_dump($data);die;
+
+		//$da = $member->ucenter();
+		$da = Member::find(1)->hasOneUcentermember()->get()->toArray();
 		var_dump($da);die;
 
 		$uid = $request->input('username');

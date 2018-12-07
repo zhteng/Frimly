@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Member extends Model{
 
 	protected $table = 'member'; // 默认 flights
-	protected $primaryKey = 'uid'; // 默认 id
+	protected $primaryKey = 'id'; // 默认 id
 	public $incrementing = true; // 当你的主键不是自增或不是int类型
 	public $timestamps = false; // 不自动维护created_at 和 updated_at 字段
 	protected $dateFormat = 'U'; // 自定义自己的时间戳格式
@@ -34,11 +34,24 @@ class Member extends Model{
         parent::boot();
     }
 
-    public function ucenter(): HasMany
+    public function labels()
     {
-    	//return $this->hasMany(Ucentermember::class, 'id');
+
+		//return $this->hasOne('App\Phone', 'foreign_key', 'local_key');
+		//return $this->belongsToMany($this, 'ucenter_member', 'id', 'id');
+    	return $this->hasMany(Ucentermember::class, 'id');
 	}
 
+	public function belongsToUcentermember()
+	{
+		DB::transaction(function (){
+
+
+
+		}, 3);
+		return $this->belongsTo('App\Models\Api\Ucentermember', 'uid', 'id');
+
+	}
 
     public function destroyData($data, $flsh=true){
 		return $this->insertGetId($data);
