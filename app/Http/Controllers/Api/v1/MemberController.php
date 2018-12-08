@@ -7,6 +7,7 @@ use App\Http\Resources\Post;
 use App\Models\Api\Member;
 use Illuminate\Http\Request;
 //use App\Http\Resources\Member as MemberResource;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redis;
@@ -71,20 +72,27 @@ class MemberController extends Controller
 	 */
 	public function login(Request $request, Member $member)
 	{
+		DB::connection()->enableQueryLog();
+		$username = $request->input('username');
+		$password = $request->input('password');
 
-		$data = Member::where('uid', 1)
-			//->select('member.*', 'ucenter_member.*')
+		$data = Member::where('username', $username)->where('password', $password)
+			->select('member.*', 'ucenter_member.*')
 			->leftJoin('ucenter_member', 'member.uid', '=', 'ucenter_member.id')
 			//->with(['labels'])
 			->get(array('uid', 'member.reg_time as aaa'))->toArray();
 
-var_dump($data);die;
+		$queries = DB::getQueryLog();
+
+// 即可查看执行的sql，传入的参数等等
+		dd($queries);
+		var_dump($data);die;
 
 		//$da = $member->ucenter();
 		$da = Member::find(1)->hasOneUcentermember()->get()->toArray();
 		var_dump($da);die;
 
-		$uid = $request->input('username');
+		$username = $request->input('username');
 		$password = $request->input('password');
 		if (!empty($uid) && !empty($password)){
 			if ($this->_key != ''){

@@ -16,6 +16,11 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+
+		//SQL日志监听
+		\Illuminate\Database\Events\QueryExecuted::class => [
+			'App\Listeners\QueryListener'
+		],
     ];
 
     /**

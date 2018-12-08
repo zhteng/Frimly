@@ -74,7 +74,8 @@ class LogServiceProvider extends ServiceProvider
     protected function configureSingleHandler(Writer $log)
     {
         $log->useFiles(
-            $this->app->storagePath().'/logs/laravel.log',
+        	//$this->app->storagePath().'/logs/laravel.log',
+            $this->app->storagePath().'/logs/'.date('Y-m-d', time()).'.log',
             $this->logLevel()
         );
     }
@@ -88,7 +89,7 @@ class LogServiceProvider extends ServiceProvider
     protected function configureDailyHandler(Writer $log)
     {
         $log->useDailyFiles(
-            $this->app->storagePath().'/logs/laravel.log', $this->maxFiles(),
+			$this->app->storagePath().'/logs/'.date('Y-m-d', time()).'.log', $this->maxFiles(),
             $this->logLevel()
         );
     }
