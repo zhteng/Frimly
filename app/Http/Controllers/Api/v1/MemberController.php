@@ -82,15 +82,10 @@ class MemberController extends Controller
 			//->with(['labels'])
 			->get(array('uid', 'member.reg_time as aaa'))->toArray();
 
-		$queries = DB::getQueryLog();
+		//$queries = DB::getQueryLog();
 
-// 即可查看执行的sql，传入的参数等等
-		dd($queries);
-		var_dump($data);die;
-
-		//$da = $member->ucenter();
-		$da = Member::find(1)->hasOneUcentermember()->get()->toArray();
-		var_dump($da);die;
+		//$da = Member::find(1)->hasOneUcentermember()->get()->toArray();
+		dd($data);die;
 
 		$username = $request->input('username');
 		$password = $request->input('password');

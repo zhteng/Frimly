@@ -26,10 +26,15 @@ class QueryListener
 	 */
 	public function handle(QueryExecuted $event)
 	{
+		// 存储文本
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$arr = explode('?', $_SERVER['REQUEST_URI']);
+		$uid = isset($_SERVER['admin_uid']) ? $_SERVER['admin_uid'] : 0;
 		$sql = str_replace("?", "'%s'", $event->sql);
-		$log = vsprintf($sql, $event->bindings);
+		$log = "u$uid" . ' >>> ' . $ip . ' >>> ' . $arr[0] . ' >>> ' . vsprintf($sql, $event->bindings) . ' >>> ' . 'execute-time:' . $event->time;
 		Log::info($log);
 
+		// 存储数据库
 		# 此处$uid定义是依赖于中间件记录操作日志代码
 		/*$uid = isset($_SERVER['admin_uid']) ? $_SERVER['admin_uid'] : 0;
 		$OperationLog = new OperationLog();
