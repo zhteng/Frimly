@@ -20,7 +20,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-		CheckToken::class
+		//CheckToken::class
     ];
 
     /**
@@ -40,7 +40,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+			\App\Http\Middleware\EncryptCookies::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			'throttle:60,1',
             'bindings',
         ],
     ];
@@ -61,5 +63,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'super' => \App\Http\Middleware\Super::class,
 		'token' => \App\Http\Middleware\CheckToken::class,
+
     ];
 }

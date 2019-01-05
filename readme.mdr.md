@@ -8,7 +8,7 @@ css 命名规则：BEM规范
 
 基于 Laravel 5.5 和 react 的个人博客系统
 
-演示地址：
+演示地址：http://firmly.zhteng.cn/home
 
 前台介绍：前台采用极简风格制作，注重移动端显示，只使用了最基础的 bootstrap，加载速度快：
 

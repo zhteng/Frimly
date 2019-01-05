@@ -76,20 +76,29 @@ class MemberController extends Controller
 		$username = $request->input('username');
 		$password = $request->input('password');
 
+		//$request->session()->regenerate();
+
+
+		$request->session()->put('user', $request->input());
+
+		//var_dump($request->session()->has('user'));die;
+		//$value = $request->session()->all();
+		//var_dump($value);die;
+
+
 		$data = Member::where('username', $username)->where('password', $password)
 			->select('member.*', 'ucenter_member.*')
 			->leftJoin('ucenter_member', 'member.uid', '=', 'ucenter_member.id')
 			//->with(['labels'])
-			->get(array('uid', 'member.reg_time as aaa'))->toArray();
-
-		//$queries = DB::getQueryLog();
+			->get(array('uid', 'member.reg_time'))->toArray();
 
 		//$da = Member::find(1)->hasOneUcentermember()->get()->toArray();
-		dd($data);die;
 
-		$username = $request->input('username');
-		$password = $request->input('password');
+		$this->_key = $this->_key . $username;
+
 		if (!empty($uid) && !empty($password)){
+			$this->_key = $this->_key . $data[0]['uid'];
+			echo $this->_key;die;
 			if ($this->_key != ''){
 				if (!empty(Redis::get($this->_key))){
 					return response()->json(['code' => 200,'message' => 'success','data' => Redis::get($this->_key)]);

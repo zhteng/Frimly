@@ -17,10 +17,10 @@ class CheckToken
 	public function handle($request, Closure $next)
 	{
 		$token = Redis::get('token');
+
 		if (empty($token) || $token != $request->input('token'))
 		{
-
-			//return redirect()->to('/home/404');
+			return response()->view('/include/error');
 		}
 		return $next($request);
 	}

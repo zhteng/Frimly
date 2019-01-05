@@ -26,10 +26,11 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 	// token
     Route::middleware(['token'])->group(function () {
 		Route::get('/photos', 'PhotosController@index')->name('photos');
+		Route::get('/login', 'MemberController@login')->name('member.login');
 
     });
 
-	Route::get('/login', 'MemberController@login')->name('member.login');
+
 
 
 
