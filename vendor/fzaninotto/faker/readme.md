@@ -1080,7 +1080,7 @@ echo $faker->vat(false);    // "BE0123456789" - unspaced Belgian Value Added Tax
 <?php
 
 // Generate a Cédula de identidad number, you can pass one argument to add separator
-echo $faker->nationalId; // 'V11223344'
+echo $faker->nationalId; // 'v11223344'
 ```
 
 ### `Faker\Provider\es_VE\Company`

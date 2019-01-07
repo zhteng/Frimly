@@ -30,6 +30,8 @@ use EasyWeChat\Kernel\ServiceContainer;
  * @property \EasyWeChat\BasicService\Media\Client              $media
  * @property \EasyWeChat\BasicService\ContentSecurity\Client    $content_security
  * @property \EasyWeChat\MiniProgram\Plugin\Client              $plugin
+ * @property \EasyWeChat\MiniProgram\UniformMessage\Client      $uniform_message
+ * @property \EasyWeChat\MiniProgram\ActivityMessage\Client     $activity_message
  */
 class Application extends ServiceContainer
 {
@@ -43,10 +45,26 @@ class Application extends ServiceContainer
         Server\ServiceProvider::class,
         TemplateMessage\ServiceProvider::class,
         CustomerService\ServiceProvider::class,
+        UniformMessage\ServiceProvider::class,
+        ActivityMessage\ServiceProvider::class,
         // Base services
         BasicService\Media\ServiceProvider::class,
         BasicService\ContentSecurity\ServiceProvider::class,
         OpenData\ServiceProvider::class,
         Plugin\ServiceProvider::class,
+        Base\ServiceProvider::class,
     ];
+
+    /**
+     * Handle dynamic calls.
+     *
+     * @param string $method
+     * @param array  $args
+     *
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        return $this->base->$method(...$args);
+    }
 }

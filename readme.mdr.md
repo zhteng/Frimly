@@ -91,24 +91,61 @@ sudo chmod -R 777 storage
 
 ## 更新
 
-```
+````
 git pull
 
 composer install
 
 php artisan migrate
-```
+````
 
+## 其他
 安装Redis提示内存不足
+````
 composer require predis/predis
-
 composer update
 composer clear-cache
+````
 
-
-```
 添加SQL日志监听
+````
 php artisan make:listener QueryListener --event=Illuminate\Database\Events\QueryExecuted
+````
 
+使用Aliyun OSS 云存储
+````
+① 直接编辑配置文件
+将以下内容增加到 composer.json：
+require: {
+    "johnlui/aliyun-oss": "~2.0"
+}
 
-```
+然后运行 composer update
+
+② 执行命令安装
+composer require johnlui/aliyun-oss:~2.0
+
+③ 构建 Service 文件
+新建 app/services/OSS.php，内容可参考：OSS.php，然后修改配置：详情见项目
+
+④ 放入自动加载
+在 composer.json 中 autoload -> classmap 处增加配置：
+"autoload": {
+    "classmap": [
+      "app/services"
+    ]
+  }
+然后运行 composer dump-autoload
+
+````
+
+proc_open(): fork failed - Cannot allocate memory的错误
+````
+/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+/sbin/mkswap /var/swap.1
+/sbin/swapon /var/swap.1
+````
+
+````
+①②③④⑤⑥⑦⑧⑨⑩
+````
