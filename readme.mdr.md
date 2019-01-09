@@ -146,6 +146,48 @@ proc_open(): fork failed - Cannot allocate memory的错误
 /sbin/swapon /var/swap.1
 ````
 
+【扩展推荐】Intervention/image 图片处理
 ````
-①②③④⑤⑥⑦⑧⑨⑩
+① 安装
+composer require intervention/image
+
+② 修改 app/config/app.php 添加 ServiceProvider:
+    // 将下面代码添加到 providers 数组中
+    'providers' => [
+        // ...
+        Intervention\Image\ImageServiceProvider::class,
+        // ...
+    ],
+    
+    // 将下面代码添加到 aliases 数组中
+    'aliases' => [
+        // ...
+        'Image' => Intervention\Image\Facades\Image::class,
+        // ...
+    ],
+
+③ 图片处理库的配置
+    切换到Imagick 库
+    
+    生成 config/image.php 配置文件:
+    php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravel5"
+
+    修改配置文件 config/image.php
+    return array(
+        'driver' => 'imagick'
+    );
+    
+④ 导入 Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+    
+
+详细用法见代码或者https://laravel-china.org/topics/1903/extension-recommended-interventionimage-image-processing
+
+
+````
+
+
+
+````
+① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
 ````

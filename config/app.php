@@ -184,6 +184,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		/*
+		 * Intervention/image 图片处理
+		 * */
+		Intervention\Image\ImageServiceProvider::class,
+
     ],
 
     /*
@@ -232,6 +237,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+		/*
+		 * Intervention/image 图片处理
+		 */
+		'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

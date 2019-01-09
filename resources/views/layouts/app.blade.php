@@ -58,7 +58,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('articles.list') }}">全部文章</a></li>
-                        <li><a href="https://github.com/SadCreeper/laravel-blog-v2" target="_blank"><img src="/icons/github.png" alt="" style="width:18px;margin-bottom:3px"></a></li>
+                        <li><a href="https://github.com/zhteng/Frimly" target="_blank"><img src="/icons/github.png" alt="" style="width:18px;margin-bottom:3px"></a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -111,7 +111,7 @@
 
         <footer class="z-footer">
             <p class="z-text">DESIGN & FRONT-END CODE BY</p>
-            <p class="z-text-big">sad creeper</p>
+            <p class="z-text-big">Zteng</p>
         </footer>
     </div>
 
