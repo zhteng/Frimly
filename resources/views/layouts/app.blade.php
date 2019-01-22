@@ -23,6 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/slicy.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

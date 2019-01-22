@@ -2054,6 +2054,8 @@ pre code {
 .row {
   margin-left: -15px;
   margin-right: -15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .row:before,
@@ -8646,7 +8648,7 @@ button.close {
 .z-footer .z-text {
   font-family: Miriam Libre,sans-serif;
   color: white;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .z-footer .z-text-big {

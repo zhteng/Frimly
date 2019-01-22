@@ -61,6 +61,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- comment Modal -->
@@ -112,6 +113,27 @@
         </div>
     </div>
 </div>
+
+
+<div class="container-fluid main-container" id="J_footer-container">
+    <div class="m-fixed-button" style="opacity: 100; bottom: 59px;">
+        <div class="m-wrapper">
+            <div class="m-qrcode">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAAjklEQVRIx81V2xHAIAjTnruyhmuwbb96Z6kYOJWaTx6SKGBm5poMIKJXnDXvsgTNoGgMrUxR3nYFnwLMXHusNTvyx73BA+1ONTvyb1eQvXNgjQ9T4EbbLaizQhQsKTBSsVyBvLbi7YoWaDZS6gzaDPNeUfM2lXOgHSjz4ncRYub92c7Zpgjnb1ON8e9vcAOBkF++GF/4vQAAAABJRU5ErkJggg==">
+            </div>
+            <div class="m-go-top">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAB/ElEQVR42u3bX0rcUBiG8cc/o+5CwW5CL0rpJirY+2zDbZzbti6klXYhCm7B0Ssv7AfqJAMz7zk5n/A+VzMhTL78IOSQITullCvc1u32HuCjZ0AxA4oZUMyAYgYUM6CYAcUMKGZAMQOKGVDMgGIGFDOgmAHFDChmQDEDihlQzIBiBhQzoJgBxQwoZkAxA4rt9x5gTQ/Ab2AP+Awc9h5orKyAD8DPYRjuAUopt8AlcNR7sPdlvITf4AEMw3AHXAPL3sO9LxvgCl6UFTET4ApeKeVTKeUkvmdEzAI4igdcAJeZETMALpnG2wcWJEbsDbgEfozgfePtCiEtYk/AdXiLkf1TIvYC3BQvWof42ONEegBuixdNIf6iA+LcgCpelAZxTsAxvFM2x4tSIM4FOIV3wXZ4USAex4a5EecAbIUXLYDvvRBbA7bGi7ohtgScCy/qgtgKcG68aAqx2TqxBWAvvGgM8ZZGiLUBe+NFY3fnJog1AbPgRQdMIz7VOkhNwD+J8KIpxJtaB2hyE0mCF60g1myn4iv/j8BfXp7jnZED73VPwL//n895gZWr+bfmIfB1ZpRNOgC+1P7R3k+kP3wGFDOgmAHFDChmQDEDihlQzIBiBhQzoJgBxQwoZkAxA4oZUMyAYgYUM6CYAcUMKGZAMQOKGVDMgGIGFDOg2DOEU/uBJ0Ro/gAAAABJRU5ErkJggg==">
+            </div>
+        </div>
+        <div class="qrcode-container">
+            <div class="qr_code" style="display: none;">
+                <p class="desktop_qr_tittle">扫码关注</p>
+                <img src="https://p1.meituan.net/travelcube/7d0f734bcd029f452d415ce7d521a0d9632811.gif" class="qr_img">
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
@@ -134,10 +156,11 @@
         }
     })
 
-    $("img").click(function(){
+    // 页面突破点击最大化显示
+    /*$("img").click(function(){
         $('#imgModalImage').attr('src', this.src)
         $('#imgModal').modal('show')
-    });
+    });*/
     $('#imgModal').click(function(){
         $('#imgModal').modal('hide')
     })
