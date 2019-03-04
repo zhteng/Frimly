@@ -22,6 +22,16 @@ class HomeController extends Controller
 			$articles[$i]->created_at_date = $articles[$i]->created_at->toDateString();
 			$articles[$i]->updated_at_diff = $articles[$i]->updated_at->diffForHumans();
 		}
+
+		$tags = Tag::all();
+		for ($i=0; $i < sizeof($tags); $i++) {
+			$tags[$i]->key = $tags[$i]->id;
+		}
+		$tags_arr = array();
+		for ($i=0; $i < sizeof($tags); $i++) {
+			array_push($tags_arr, $tags[$i]->name);
+		}
+
 		return view('home', compact('articles'));
 	}
 }

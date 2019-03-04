@@ -2,22 +2,22 @@
 
 /* :: Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
-@import url(../css/bootstrap.min.css);
-@import url(../css/classy-nav.css);
-@import url(../css/animate.css);
-@import url(../css/owl.carousel.css);
-@import url(../css/font-awesome.min.css);
+@import url(../home/bootstrap.min.css);
+@import url(../home/classy-nav.css);
+@import url(../home/animate.css);
+@import url(../home/owl.carousel.css);
+@import url(../home/font-awesome.min.css);
 
 @font-face {
 	font-family: 'helveticaneuebold';
-	src: url("../fonts/helvetica_neu_bold-webfont.woff2") format("woff2"), url("../fonts/helvetica_neu_bold-webfont.woff") format("woff");
+	src: url("../../fonts/home/helvetica_neu_bold-webfont.woff2") format("woff2"), url("../../home/fonts/helvetica_neu_bold-webfont.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'helveticaneuemedium';
-	src: url("../fonts/helveticaneue_medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneue_medium-webfont.woff") format("woff");
+	src: url("../../fonts/home/helveticaneue_medium-webfont.woff2") format("woff2"), url("../../home/fonts/helveticaneue_medium-webfont.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -2172,4 +2172,3 @@ ol.type li a:hover {
 
 /* The End */
 
-/*# sourceMappingURL=style.css.map */

@@ -23,11 +23,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/slicy.css') }}" rel="stylesheet">
+
+	@if ( $_SERVER['REQUEST_URI'] == '/'  )
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/home/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/home/nivo-lightbox/nivo-lightbox.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/home/nivo-lightbox/default.css') }}">
+	@endif
+
 </head>
 <body>
     <div id="app">
+		@if ( $_SERVER['REQUEST_URI'] != '/' )
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -41,7 +48,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         Home
                     </a>
 
@@ -91,9 +98,7 @@
                                         @endif
                                     @endif
                                     <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -108,6 +113,7 @@
                 </div>
             </div>
         </nav>
+		@endif
 
         @yield('content')
 
@@ -118,7 +124,24 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+	@if ( $_SERVER['REQUEST_URI'] == 'login' )
+    	<script src="{{ asset('js/app.js') }}"></script>
+	@endif
+
+	<script type="text/javascript" src="{{ asset('js/home/jquery-2.2.4.min.js') }}"></script>
+	<!-- Popper js -->
+	<script type="text/javascript" src="{{ asset('js/home/popper.min.js') }}"></script>
+	<!-- Bootstrap js -->
+	<script type="text/javascript" src="{{ asset('js/home/bootstrap.min.js') }}"></script>
+	<!-- Plugins js -->
+	<script type="text/javascript" src="{{ asset('js/home/plugins.js') }}"></script>
+	<!-- Active js -->
+	<script type="text/javascript" src="{{ asset('js/home/active.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/home/bootstrap.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/home/nivo-lightbox.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/home/jquery.isotope.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/home/main.js') }}"></script>
+
     @yield('scripts')
 </body>
 </html>
