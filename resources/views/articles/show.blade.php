@@ -119,10 +119,10 @@
     <div class="m-fixed-button" style="opacity: 100; bottom: 59px;">
         <div class="m-wrapper">
             <div class="m-qrcode">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAAjklEQVRIx81V2xHAIAjTnruyhmuwbb96Z6kYOJWaTx6SKGBm5poMIKJXnDXvsgTNoGgMrUxR3nYFnwLMXHusNTvyx73BA+1ONTvyb1eQvXNgjQ9T4EbbLaizQhQsKTBSsVyBvLbi7YoWaDZS6gzaDPNeUfM2lXOgHSjz4ncRYub92c7Zpgjnb1ON8e9vcAOBkF++GF/4vQAAAABJRU5ErkJggg==">
+                <img src="/images/m-qrcode.png">
             </div>
             <div class="m-go-top">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAB/ElEQVR42u3bX0rcUBiG8cc/o+5CwW5CL0rpJirY+2zDbZzbti6klXYhCm7B0Ssv7AfqJAMz7zk5n/A+VzMhTL78IOSQITullCvc1u32HuCjZ0AxA4oZUMyAYgYUM6CYAcUMKGZAMQOKGVDMgGIGFDOgmAHFDChmQDEDihlQzIBiBhQzoJgBxQwoZkAxA4rt9x5gTQ/Ab2AP+Awc9h5orKyAD8DPYRjuAUopt8AlcNR7sPdlvITf4AEMw3AHXAPL3sO9LxvgCl6UFTET4ApeKeVTKeUkvmdEzAI4igdcAJeZETMALpnG2wcWJEbsDbgEfozgfePtCiEtYk/AdXiLkf1TIvYC3BQvWof42ONEegBuixdNIf6iA+LcgCpelAZxTsAxvFM2x4tSIM4FOIV3wXZ4USAex4a5EecAbIUXLYDvvRBbA7bGi7ohtgScCy/qgtgKcG68aAqx2TqxBWAvvGgM8ZZGiLUBe+NFY3fnJog1AbPgRQdMIz7VOkhNwD+J8KIpxJtaB2hyE0mCF60g1myn4iv/j8BfXp7jnZED73VPwL//n895gZWr+bfmIfB1ZpRNOgC+1P7R3k+kP3wGFDOgmAHFDChmQDEDihlQzIBiBhQzoJgBxQwoZkAxA4oZUMyAYgYUM6CYAcUMKGZAMQOKGVDMgGIGFDOg2DOEU/uBJ0Ro/gAAAABJRU5ErkJggg==">
+                <a href="javascript:m_go_top();"><img src="/images/m-go-top.png"></a>
             </div>
         </div>
         <div class="qrcode-container">
@@ -161,8 +161,16 @@
         $('#imgModalImage').attr('src', this.src)
         $('#imgModal').modal('show')
     });*/
+
     $('#imgModal').click(function(){
         $('#imgModal').modal('hide')
     })
+
+
+    function m_go_top() {
+        $("html,body").animate({scrollTop:$("#app-navbar-collapse").offset().top},1000)
+    }
+
+
 </script>
 @endsection

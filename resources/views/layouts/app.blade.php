@@ -124,10 +124,7 @@
     </div>
 
     <!-- Scripts -->
-	@if ( $_SERVER['REQUEST_URI'] == 'login' )
-    	<script src="{{ asset('js/app.js') }}"></script>
-	@endif
-
+	<script src="{{ asset('js/app.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/home/jquery-2.2.4.min.js') }}"></script>
 	<!-- Popper js -->
 	<script type="text/javascript" src="{{ asset('js/home/popper.min.js') }}"></script>

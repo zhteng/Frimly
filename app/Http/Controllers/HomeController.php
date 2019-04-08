@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Visit;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -24,14 +25,7 @@ class HomeController extends Controller
 		}
 
 		$tags = Tag::all();
-		for ($i=0; $i < sizeof($tags); $i++) {
-			$tags[$i]->key = $tags[$i]->id;
-		}
-		$tags_arr = array();
-		for ($i=0; $i < sizeof($tags); $i++) {
-			array_push($tags_arr, $tags[$i]->name);
-		}
 
-		return view('home', compact('articles'));
+		return view('home', compact('articles', 'tags'));
 	}
 }

@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<!-- Top Social Area -->
-				<div class="col-12 col-sm-4">
+				<!--<div class="col-12 col-sm-4">
 					<div class="top-social-area">
 						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
 						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -52,7 +52,7 @@
 						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
 						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>
@@ -493,14 +493,6 @@
 								@foreach($tags as $tag)
 								<a href="{{ route('tags.show', $tag->id) }}"><span style="margin-right:10px">{{ $tag->name }}</span></a>
 								@endforeach
-								<li><a href="#">design</a></li>
-								<li><a href="#">fashion</a></li>
-								<li><a href="#">travel</a></li>
-								<li><a href="#">music</a></li>
-								<li><a href="#">party</a></li>
-								<li><a href="#">video</a></li>
-								<li><a href="#">photography</a></li>
-								<li><a href="#">adventure</a></li>
 							</ul>
 						</div>
 					</div>
