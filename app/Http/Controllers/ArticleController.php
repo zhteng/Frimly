@@ -63,6 +63,10 @@ class ArticleController extends Controller
 			$articles[$i]->updated_at_diff = $articles[$i]->updated_at->diffForHumans();
 		}
 		$tags = Tag::all();
+		$tag = Tag::where('name', $key)->first();
+		if ($tag) {
+			$tag->update(['search_num' => $tag->search_num + 1]);
+		}
 		return view('articles.list', compact('articles', 'tags'));
 	}
 
@@ -141,6 +145,7 @@ class ArticleController extends Controller
 		$article->cover = $request->cover;
 		$article->content = $request->content;
 		$article->save();
+
 		//处理标签
 		//先删除文章关联的所有标签
 		//遍历标签，如果标签存在则添加关联，如果标签不存在先创建再添加关联
@@ -154,6 +159,9 @@ class ArticleController extends Controller
 				$tag->name = $request->tags[$i];
 				$tag->save();
 				$article->tags()->attach($tag->id);
+			}
+			if (empty($request->id)){
+				$tag->update(['article_num' => $tag->article_num + 1]);
 			}
 		}
 		return response()->json([
